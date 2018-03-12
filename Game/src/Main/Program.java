@@ -38,7 +38,7 @@ public class Program
 			}
 			else if(option.equals("2"))
 			{
-				GameManager.instance().loadGame(scan("Write the name of your game: "));
+				continueGame();
 				playing = true;
 			}
 			else if(option.equals("3"))
@@ -74,7 +74,6 @@ public class Program
 				Game.instance().Play();
 			}
 		}
-	
 	}
 
 	public static void printArray(int[] array)
@@ -111,6 +110,30 @@ public class Program
 			if(succes) break;
 			
 			System.out.println("That name already exists.");
+		}
+	}
+	
+	private static void continueGame()
+	{
+		String name = "";
+		while(true)
+		{
+			name = scan("Write the name of your game: ");
+			
+			if(GameManager.instance().players().contains(name)) break;
+		}
+		
+		GameManager.instance().setCurrentPlayer(name);
+		
+		try
+		{
+			GameManager.instance().loadGame(name);
+		}
+		catch (FileNotFoundException e)
+		{
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+			System.out.println("Something happened");
 		}
 	}
 	

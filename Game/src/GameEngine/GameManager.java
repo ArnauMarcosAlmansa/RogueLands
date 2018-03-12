@@ -107,9 +107,9 @@ public class GameManager
 		
 	}
 	
-	public void loadGame(String playerName)
+	public void loadGame(String playerName) throws FileNotFoundException
 	{
-		//Game.instance().
+		Game.instance().Load(DataParser.parseSave(FileManager.instance().readFile(FileType.SAVE, "save.sav")));
 	}
 	
 	public void updateUsersFile()
@@ -120,6 +120,11 @@ public class GameManager
 	public String currentPlayer()
 	{
 		return currentPlayer;
+	}
+	
+	public void setCurrentPlayer(String newPlayer)
+	{
+		currentPlayer = newPlayer;
 	}
 	
 	public ArrayList<String> players()

@@ -35,7 +35,7 @@ public class Exit extends MapTile
 		if(character.Movement().equals(exitCondition))
 		{
 			int direction = exitCondition.toDirection();
-			
+			  
 			Game.instance().currentScene().changeMap(Game.instance().currentScene().aroundMaps()[direction]);
 		
 			if(direction == 0)
@@ -54,10 +54,11 @@ public class Exit extends MapTile
 			{
 				character.setPos(new Vector2(character.pos().row(), GameMap.MAP_WIDTH - 1));
 			}
-						
+			
+			character.Movement().set(0, 0);
+			
 			Game.instance().currentScene().currentMap().charactersGrid()[character.pos().row()][character.pos().col()] = character;
 		
-			
 		}
 	}
 	

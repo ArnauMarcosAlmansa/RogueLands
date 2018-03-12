@@ -108,9 +108,11 @@ public class Game
 		
 		canvas.setActcolors(false);
 		
+		canvas.setActborde(false);
+		
 		canvas.setActimatges(true);
 		
-		String[] imgs = {"resources/images/ground.png", "resources/images/wall.png", "resources/images/personaje.png","resources/images/transparent.png"};
+		String[] imgs = {"resources/images/ground.png", "resources/images/wall.png", "resources/images/ground.png", "resources/images/personaje.png","resources/images/transparent.png", "resources/images/enemy.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png"};
 		
 		canvas.setImatges(imgs);
 		
@@ -121,13 +123,11 @@ public class Game
 	{
 		while(true)
 		{
-			currentScene.Update();
-			
 			canvas.dibuixa(currentScene.currentMap().layout());
 			
 			canvas.overdibuixa(currentScene.currentMap().characterLayout());
 			
-			System.out.println(Functions.intMatrixToString(currentScene.currentMap().characterLayout()));
+			//System.out.println(Functions.intMatrixToString(currentScene.currentMap().characterLayout()));
 			
 			System.out.println("Playing...");
 			
@@ -135,7 +135,22 @@ public class Game
 			
 			
 			player.Update();
+			
+			currentScene.Update();
+			
+			System.out.println("health: " + player.CurrentHealth());
 		}
+	}
+	
+	public void Save()
+	{
+		Vector2 mapPos = Game.instance().currentScene().currentMap().pos();
+		String data = "map: " + mapPos.row() + "-" + mapPos.col() + ".map\nplayerpos: ";
+		
+		Vector2 playerPos = Game.instance().player().pos();
+		data = data + playerPos.row() + " " + playerPos.col();
+		
+		FileManager.instance().saveFile(data, "save.sav", FileType.SAVE);
 	}
 	
 	public static Game instance()
@@ -161,5 +176,10 @@ public class Game
 	public GameScene currentScene()
 	{
 		return currentScene;
+	}
+	
+	public PlayableCharacter player()
+	{
+		return player;
 	}
 }

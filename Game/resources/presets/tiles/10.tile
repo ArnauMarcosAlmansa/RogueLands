@@ -1,0 +1,5 @@
+tyleType: exit
+sprite: resources/images/ground.png
+collider: false
+exitcondition: -1 0
+END

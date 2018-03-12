@@ -1,3 +1,4 @@
 tileType: default
 sprite: resources/imgages/ground.png
 collider: false
+END

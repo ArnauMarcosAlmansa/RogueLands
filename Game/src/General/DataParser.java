@@ -87,6 +87,8 @@ public class DataParser
 			{
 				String label = reader.next();
 				
+				if(label.equals("END")) break;
+				
 				if(label.toLowerCase().equals("sprite:"))
 				{
 					temp.setImage(reader.next());
@@ -127,6 +129,8 @@ public class DataParser
 			while(reader.hasNextLine())
 			{
 				String label = reader.next();
+				
+				if(label.equals("END")) break;
 				
 				if(label.toLowerCase().equals("sprite:"))
 				{
@@ -245,7 +249,7 @@ public class DataParser
 		
 		Scanner reader = new Scanner(data);
 		
-		while(true)
+		while(reader.hasNext())
 		{
 			String label = reader.next();
 			
@@ -255,7 +259,7 @@ public class DataParser
 			{
 				save.map = reader.next();
 			}
-			else if(label.equals("playerpos:"))
+			else if(label.toLowerCase().equals("playerpos:"))
 			{
 				save.playerPos.set(Integer.parseInt(reader.next()), Integer.parseInt(reader.next()));
 			}

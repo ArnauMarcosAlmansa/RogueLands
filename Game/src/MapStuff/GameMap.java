@@ -105,25 +105,47 @@ public class GameMap
 		if(exits[0] > 0)
 		{
 			tiles[0][7] = new Exit();
+			tiles[0][7].setCollider(false);
+			tiles[0][7].setId(10);
+			
 			tiles[0][8] = new Exit();
+			tiles[0][8].setCollider(false);
+			tiles[0][8].setId(10);
 		}
 		
 		if(exits[1] > 0)
 		{
 			tiles[7][tiles[0].length - 1] = new Exit();
+			tiles[7][tiles[0].length - 1].setCollider(false);
+			tiles[7][tiles[0].length - 1].setId(11);
+			
 			tiles[8][tiles[0].length - 1] = new Exit();
+			tiles[8][tiles[0].length - 1].setCollider(false);
+			tiles[8][tiles[0].length - 1].setId(11);
+			
 		}
 		
 		if(exits[2] > 0)
 		{
 			tiles[tiles.length - 1][7] = new Exit();
+			tiles[tiles.length - 1][7].setCollider(false);
+			tiles[tiles.length - 1][7].setId(12);
+			
 			tiles[tiles.length - 1][8] = new Exit();
+			tiles[tiles.length - 1][8].setCollider(false);
+			tiles[tiles.length - 1][8].setId(12);
+			
 		}
 		
 		if(exits[3] > 0)
 		{
 			tiles[7][0] = new Exit();
+			tiles[7][0].setCollider(false);
+			tiles[7][0].setId(13);
+					
 			tiles[8][0] = new Exit();
+			tiles[8][0].setCollider(false);
+			tiles[8][0].setId(13);
 		}
 		
 		FileManager.instance().saveFile(this.toString(), pos.row() + "-" + pos.col() + ".map", FileType.GAME_MAP);
@@ -168,12 +190,58 @@ public class GameMap
 				}
 				else
 				{
-					ret[i][j] = 3;
+					ret[i][j] = 4;
 				}
 			}
 		}
 		
 		return ret;
+	}
+	
+	public void correctExits()
+	{
+		Exit temp = null;
+		
+		if(tiles[0][7] instanceof Exit)
+		{
+			temp = (Exit) tiles[0][7];
+			temp.setNextMap((pos.row() - 1) + "-" + pos.col() + ".map");
+			
+			temp = (Exit) tiles[0][8];
+			
+			temp.setNextMap((pos.row() - 1) + "-" + pos.col() + ".map");
+
+		}
+		
+		if(tiles[7][tiles[0].length - 1] instanceof Exit)
+		{
+			temp = (Exit) tiles[7][tiles[0].length - 1];
+			temp.setNextMap(pos.row() + "-" + (pos.col() + 1) + ".map");
+			
+			temp = (Exit) tiles[8][tiles[0].length - 1];
+			temp.setNextMap(pos.row() + "-" + (pos.col() + 1) + ".map");
+			
+		}
+		
+		if(tiles[tiles.length - 1][7] instanceof Exit)
+		{
+			
+			temp = (Exit) tiles[tiles.length - 1][7];
+			temp.setNextMap((pos.row() + 1) + "-" + pos.col() + ".map");
+			
+			temp = (Exit) tiles[tiles.length - 1][8];
+			temp.setNextMap((pos.row() + 1) + "-" + pos.col() + ".map");
+		}
+		
+		if(tiles[7][0] instanceof Exit)
+		{
+			temp = (Exit) tiles[7][0];
+			temp.setNextMap(pos.row() + "-" + (pos.col() - 1) + ".map");
+					
+			temp = (Exit) tiles[8][0];
+			temp.setNextMap(pos.row() + "-" + (pos.col() - 1) + ".map");
+		}
+		
 	}
 	
 	public String toString()

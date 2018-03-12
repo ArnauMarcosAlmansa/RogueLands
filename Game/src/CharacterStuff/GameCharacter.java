@@ -1,4 +1,5 @@
 package CharacterStuff;
+import GameEngine.Game;
 import General.Vector2;
 
 public class GameCharacter 
@@ -34,11 +35,24 @@ public class GameCharacter
 		
 	}
 	
+	
 	public float damage(float amount)
 	{
 		this.currentHealth = this.currentHealth - amount * damageAbsortion;
 		
+		if(this.currentHealth <= 0)
+		{
+			die();
+		}
+		
 		return amount * damageReflection;
+	}
+	
+	private void die()
+	{
+		Game.instance().currentScene().characters().remove(this);
+		
+		Game.instance().currentScene().currentMap().charactersGrid()[pos.row()][pos.col()] = null;
 	}
 	
 	public boolean heal(float amount)

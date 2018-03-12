@@ -1,15 +1,25 @@
 package CharacterStuff;
 
 import GameEngine.Game;
+import GameEngine.GameManager;
+import General.FileManager;
 import General.Vector2;
 import MapStuff.Exit;
 
 public class PlayableCharacter extends GameCharacter
 {
+	boolean attacking = false;
+	
 	public PlayableCharacter()
 	{
 		//TODO quitar el literal este
-		currentId = 2;
+		currentId = 3;
+		
+		currentHealth = 10;
+		maxHealth = 10;
+		damageAbsortion = 1;
+		
+		attack = 1;
 		pos = new Vector2();
 		movement = new Vector2();
 	}
@@ -26,13 +36,20 @@ public class PlayableCharacter extends GameCharacter
 				e.printStackTrace();
 			}
 		}
-		
+		if(attacking)
+		{
+			attack();
+		}
 		move();
 	}
 	
 	private boolean input()
 	{
 		char input = Game.instance().window().getActualChar();
+		
+		movement.set(0, 0);
+		
+		attacking = false;
 		
 		if(input == 'w')
 		{
@@ -50,10 +67,17 @@ public class PlayableCharacter extends GameCharacter
 		{
 			movement.set(0, 1);
 		}
+		else if(input == 'k')
+		{
+			attacking = true;
+		}
+		else if(input == 'l')
+		{
+			Game.instance().Save();
+			System.exit(0);
+		}
 		else
 		{
-			movement.set(0, 0);
-			
 			return false;
 		}
 		
@@ -117,5 +141,46 @@ public class PlayableCharacter extends GameCharacter
 		}
 		
 		return ableToMove;
+	}
+	
+	private void attack()
+	{
+		Vector2[] range = {new Vector2(1, 0), new Vector2(-1, 0), new Vector2(0, 1), new Vector2(0, -1)};
+	
+		for(int i = 0; i < range.length; i++)
+		{
+			try
+			{
+				Vector2 temp = pos.sum(range[i]);
+				
+				Game.instance().currentScene().currentMap().charactersGrid()[temp.row()][temp.col()].damage(attack);
+			}
+			catch(Exception e)
+			{
+				System.out.println("attack " + i + " failed");
+			}
+		}
+	}
+	
+	@Override
+	public float damage(float amount)
+	{
+		this.currentHealth = this.currentHealth - amount * damageAbsortion;
+		
+		if(this.currentHealth <= 0)
+		{
+			die();
+		}
+		
+		return amount * damageReflection;
+	}
+	
+	private void die()
+	{
+		System.out.println("Loser!");
+		
+		FileManager.instance().deleteGame(GameManager.instance().currentPlayer());
+		
+		System.exit(0);
 	}
 }
