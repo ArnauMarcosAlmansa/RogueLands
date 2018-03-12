@@ -40,6 +40,11 @@ public class GameManager
 		
 	}
 	
+	public void loadGame(String playerName)
+	{
+		
+	}
+	
 	public static GameManager instance()
 	{
 		if(instance == null)

@@ -28,7 +28,7 @@ public class Program
 			}
 			else if(option.equals("2"))
 			{
-				
+				GameManager.instance().loadGame(scan("Write the name of your game: "));
 			}
 			else if(option.equals("3"))
 			{
