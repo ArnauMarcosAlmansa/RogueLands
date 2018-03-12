@@ -7,12 +7,16 @@ import General.DataParser;
 import General.FileManager;
 import General.FileType;
 import General.Functions;
+import Main.Program;
+import WorldStuff.World;
+import WorldStuff.WorldCfg;
 
 
 public class GameManager 
 {
 	
 	private ArrayList<String> players;
+	
 	private String currentPlayer;
 	
 	private long sessionStart;
@@ -50,7 +54,41 @@ public class GameManager
 		{
 			players.add(name);
 			
+			currentPlayer = name;
+			
 			FileManager.instance().saveFile(Functions.listToString(players), "users.cfg", FileType.USERS);
+			
+			WorldCfg selected = null;
+			
+			while(true)
+			{
+				System.out.println("On which dificulty would you like to play?");
+				
+				int difficulty = -1;
+				
+				try {
+					difficulty = Program.input.nextInt();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					System.out.println("Invalid input");
+					continue;
+				}
+				
+				try {
+					selected = DataParser.parseWorldCfg(FileManager.instance().readFile(FileType.WORLD_PRESET, "presets.cfg"))[difficulty];
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				catch (ArrayIndexOutOfBoundsException e)
+				{
+					System.out.println("Invalid number");
+				}
+				
+				break;
+			}
+			
+			World temp = new World(selected);
 			
 			return true;
 		}

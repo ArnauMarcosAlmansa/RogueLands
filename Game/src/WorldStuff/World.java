@@ -94,11 +94,11 @@ public class World
 		recursionDepth = 0;
 		
 		Vector2 startingChunk = emptiestChunk();
-		
+		/*
 		System.out.println("The memptiest chunk is " + startingChunk);
 		
 		System.out.println(this);
-		
+		*/
 		Vector2 startingTile = new Vector2();
 		
 		Random rand = new Random();

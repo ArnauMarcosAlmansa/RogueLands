@@ -20,9 +20,7 @@ public class FileManager
 	private String savesPath;
 	
 	private String mapTilePresetsPath;
-	
-	private String currentPlayer = "arnau";
-	
+		
 	private String gameMapPath;
 	
 	private static FileManager instance;
@@ -175,7 +173,7 @@ public class FileManager
 		switch(type)
 		{
 			case SAVE:
-				path = currentPlayer + '/';
+				path = GameManager.instance().currentPlayer() + '/';
 				break;
 			
 			case MAP_TILE:
@@ -187,7 +185,7 @@ public class FileManager
 				break;
 			case GAME_MAP:
 				path = gameMapPath;
-				path = currentPlayer + '/' + path;
+				path = GameManager.instance().currentPlayer() + '/' + path;
 				break;
 			default:
 				path = "";
@@ -242,6 +240,8 @@ public class FileManager
 		}
 		
 		GameManager.instance().players().remove(name);
+		
+		GameManager.instance().updateUsersFile();
 	}
 	
 	public static FileManager instance()

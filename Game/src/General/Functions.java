@@ -27,13 +27,13 @@ public class Functions
 		return ocurrencies;
 	}
 	
-	public static String listToString(List list)
+	public static <T> String listToString(List<T> list)
 	{
 		String data = new String();
 		
 		for(int i = 0; i < list.size(); i++)
 		{
-			data = data + list.get(i) + '\n';
+			data = data + list.get(i).toString() + '\n';
 		}
 		
 		return data;
