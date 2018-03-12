@@ -19,7 +19,7 @@ public class GameScene
 		
 	}
 	
-	public void setMap(GameMap current, GameMap[] around)
+	public void setMaps(GameMap current, GameMap[] around)
 	{
 		
 	}

@@ -2,7 +2,7 @@ package General;
 
 public class Save
 {
-	String map;
+	public String map;
 	
-	Vector2 playerPos = new Vector2();
+	public Vector2 playerPos = new Vector2();
 }

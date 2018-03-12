@@ -1,5 +1,6 @@
 package General;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,7 +14,7 @@ import WorldStuff.WorldTile;
 
 public class DataParser 
 {
-	public static MapTile[][] parseMapChunk(String data)
+	public static MapTile[][] parseMapChunk(String data) throws FileNotFoundException
 	{
 		MapTile[][] ret = new MapTile[GameMap.MAP_HEIGHT][GameMap.MAP_WIDTH];
 		
@@ -265,7 +266,7 @@ public class DataParser
 		return save;
 	}
 
-	public static GameMap parseGameMap(String data)
+	public static GameMap parseGameMap(String data) throws FileNotFoundException
 	{
 		GameMap map = new GameMap();
 		

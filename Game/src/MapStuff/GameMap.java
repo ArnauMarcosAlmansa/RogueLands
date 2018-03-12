@@ -68,11 +68,13 @@ public class GameMap
 				{
 					tiles[i][j] = new MapTile();
 					tiles[i][j].setCollider(true);
+					tiles[i][j].setId(1);
 				}
 				else if(rand.nextInt(8) < 7)
 				{
 					tiles[i][j] = new MapTile();
 					tiles[i][j].setCollider(false);
+					tiles[i][j].setId(0);
 
 				}
 				else

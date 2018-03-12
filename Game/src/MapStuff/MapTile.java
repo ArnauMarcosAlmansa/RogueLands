@@ -24,6 +24,11 @@ public class MapTile
 		return id;
 	}
 	
+	public void setId(int newId)
+	{
+		id = newId;
+	}
+	
 	public void setImage(String newImage)
 	{
 		image = newImage;

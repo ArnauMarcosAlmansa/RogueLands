@@ -1,13 +1,17 @@
 package General;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
-import MapStuff.GameMap;
-import WorldStuff.WorldCfg;
+import GameEngine.GameManager;
+import MapStuff.*;
+import WorldStuff.*;
 
 public class FileManager 
 {
@@ -125,7 +129,7 @@ public class FileManager
 		return true;
 	}
 	
-	public String readFile(FileType type, String name) 
+	public String readFile(FileType type, String name) throws FileNotFoundException 
 	{
 		String path = new String();
 		
@@ -137,17 +141,10 @@ public class FileManager
 		
 		Scanner reader = null;
 		
-		try 
-		{
-			reader = new Scanner(fileToRead);
-		} 
-		catch(FileNotFoundException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-			return "";
-		}
+		
+		reader = new Scanner(fileToRead);
+	
+		
 		
 		String data = new String();
 		
@@ -193,13 +190,58 @@ public class FileManager
 				path = currentPlayer + '/' + path;
 				break;
 			default:
-				path = "ERROR";
+				path = "";
 				break;
 		}
 		
 		
 		
 		return path;
+	}
+	
+	public void deleteGame(String name)
+	{
+		try
+		{
+			Files.delete(Paths.get(name + "/save.sav"));
+		}catch (IOException e1)
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		for(int i = 0; i < 16; i++)
+		{
+			for(int j = 0; j < 16; j++)
+			{
+				try
+				{
+					Files.delete(Paths.get(name + "/maps/" + i + "-" + j + ".map"));
+				}
+				catch (IOException e)
+				{
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		try {
+			Files.delete(Paths.get(name + "/maps"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			Files.delete(Paths.get(name));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		GameManager.instance().players().remove(name);
 	}
 	
 	public static FileManager instance()
