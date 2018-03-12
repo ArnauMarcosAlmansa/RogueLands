@@ -178,7 +178,7 @@ public class FileManager
 		switch(type)
 		{
 			case SAVE:
-				path = savesPath + '/' + currentPlayer;
+				path = currentPlayer + '/';
 				break;
 			
 			case MAP_TILE:

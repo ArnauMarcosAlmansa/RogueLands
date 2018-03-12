@@ -14,5 +14,13 @@ public class GameScene
 	
 	private ArrayList<GameCharacter> characters = new ArrayList<GameCharacter>();
 	
-
+	public void Update()
+	{
+		
+	}
+	
+	public void setMap(GameMap current, GameMap[] around)
+	{
+		
+	}
 }

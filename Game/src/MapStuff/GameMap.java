@@ -109,6 +109,16 @@ public class GameMap
 		FileManager.instance().saveFile(this.toString(), pos.row() + "-" + pos.col() + ".map", FileType.GAME_MAP);
 	}
 	
+	public void setBiome(String newBiome)
+	{
+		biome = newBiome;
+	}
+	
+	public MapTile[][] tiles()
+	{
+		return tiles;
+	}
+	
 	public String toString()
 	{
 		String data = new String();

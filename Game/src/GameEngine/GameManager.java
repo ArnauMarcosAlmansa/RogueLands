@@ -42,7 +42,12 @@ public class GameManager
 	
 	public void loadGame(String playerName)
 	{
-		
+		Game.instance().
+	}
+	
+	public String currentPlayer()
+	{
+		return currentPlayer;
 	}
 	
 	public static GameManager instance()

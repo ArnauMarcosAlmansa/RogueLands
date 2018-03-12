@@ -1,5 +1,8 @@
 package GameEngine;
 
+import General.*;
+import MapStuff.*;
+
 public class Game
 {
 	private static Game instance;
@@ -11,11 +14,23 @@ public class Game
 		currentScene = new GameScene();
 	}
 	
-	private void Play()
+	public void Load(Save save)
+	{
+		GameMap current = DataParser.
+		
+		currentScene.setMaps(current, around);
+	}
+	
+	public void Setup()
+	{
+		
+	}
+	
+	public void Play()
 	{
 		while(true)
 		{
-			
+			currentScene.Update();
 		}
 	}
 	

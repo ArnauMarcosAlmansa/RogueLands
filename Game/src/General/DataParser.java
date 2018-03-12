@@ -233,4 +233,56 @@ public class DataParser
 		
 		return ret;
 	}
+	
+	public static Save parseSave(String data)
+	{
+		Save save = new Save();
+		
+		Scanner reader = new Scanner(data);
+		
+		while(true)
+		{
+			String label = reader.next();
+			
+			if(label.toUpperCase().equals("END")) break;
+			
+			if(label.toLowerCase().equals("map:"))
+			{
+				save.map = reader.next();
+			}
+			else if(label.equals("playerpos:"))
+			{
+				save.playerPos.set(Integer.parseInt(reader.next()), Integer.parseInt(reader.next()));
+			}
+			else
+			{
+				System.out.println("Error en el archivo.");
+			}
+		}
+		
+		reader.close();
+		
+		return save;
+	}
+
+	public static GameMap parseGameMap(String data)
+	{
+		GameMap map = new GameMap();
+		
+		Scanner reader = new Scanner(data);
+		
+		map.setBiome(reader.nextLine());
+		
+		for(int i = 0; i < GameMap.MAP_HEIGHT; i++)
+		{
+			for(int j = 0; j < GameMap.MAP_WIDTH; j++)
+			{
+				map.tiles()[i][j] = parseMapTile(FileManager.instance().readFile(FileType.MAP_TILE, reader.nextInt() + ".tile"));
+			}
+		}
+		
+		reader.close();
+		
+		return map;
+	}
 }
