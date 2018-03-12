@@ -93,7 +93,7 @@ public class GameManager
 			
 			World temp = new World(selected);
 			
-			String save = temp.startingMapName() + "\n8 8";
+			String save = "map: " + temp.startingMapName() + "\nplayerpos: 8 8\nEND";
 			
 			FileManager.instance().saveFile(save, "save.sav", FileType.SAVE);
 			

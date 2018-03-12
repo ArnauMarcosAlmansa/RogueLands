@@ -18,6 +18,17 @@ public class GameMap
 	
 	private Vector2 pos;
 	
+	public GameMap()
+	{
+		tiles = new MapTile[MAP_HEIGHT][MAP_WIDTH];
+		
+		biome = "default biome";
+		
+		pos = new Vector2();
+		
+		initiateTiles();
+	}
+	
 	public int[][] layout()
 	{
 		int[][] layout = new int[tiles.length][tiles[0].length];

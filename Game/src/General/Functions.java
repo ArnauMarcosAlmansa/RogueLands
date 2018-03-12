@@ -1,5 +1,6 @@
 package General;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Functions 
@@ -37,5 +38,52 @@ public class Functions
 		}
 		
 		return data;
+	}
+	
+	public static int[] extractInts(String text)
+	{
+		ArrayList<String> temp = new ArrayList<String>();
+				
+		for(int i = 0; i < text.length(); i++)
+		{
+			if(Character.isDigit(text.charAt(i)))
+			{
+				String number = new String();
+				
+				
+				
+				for(int j = i; j < text.length(); j++)
+				{
+					if(Character.isDigit(text.charAt(j)))
+					{
+						System.out.println(text.charAt(j));
+						number = number + text.charAt(j);
+					}
+					else
+					{
+						temp.add(number);
+						i = j;
+						break;
+					}
+				}
+				
+			}
+		}
+		
+		for(int i = 0; i < temp.size(); i++)
+		{
+			System.out.println(temp.get(i));
+		}
+		
+		int[] ret = new int[temp.size()];
+		
+		for(int i = 0; i < temp.size(); i++)
+		{
+			System.out.println(temp.get(i));
+			
+			ret[i] = Integer.parseInt(temp.get(i));
+		}
+		
+		return ret;
 	}
 }

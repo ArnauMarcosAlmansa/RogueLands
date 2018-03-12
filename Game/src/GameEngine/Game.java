@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import General.*;
 import General.DataParser;
+import Graphics.*;
 import MapStuff.*;
 
 public class Game
@@ -12,6 +13,10 @@ public class Game
 	private static Game instance;
 	
 	private GameScene currentScene;
+	
+	private Taulell canvas;
+	
+	private Finestra window;
 	
 	
 	private Game()
@@ -37,8 +42,10 @@ public class Game
 		
 		Scanner auxiliarinput = new Scanner(save.map);
 		
-		int row = auxiliarinput.nextInt();
-		int col = auxiliarinput.nextInt();
+		int[] temp = Functions.extractInts(save.map);
+		
+		int row = temp[0];
+		int col = temp[1];
 		
 		try
 		{
@@ -87,7 +94,12 @@ public class Game
 	
 	public void Setup()
 	{
+		canvas = new Taulell();
+		window = new Finestra(canvas);
 		
+		window.setName("Rogue Lands");
+		
+		canvas.setActcolors(false);
 	}
 	
 	public void Play()
@@ -95,6 +107,7 @@ public class Game
 		while(true)
 		{
 			currentScene.Update();
+			canvas.dibuixa(currentScene.currentMap().layout());
 		}
 	}
 	

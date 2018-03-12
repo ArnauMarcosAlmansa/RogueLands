@@ -21,6 +21,12 @@ public class GameScene
 	
 	public void setMaps(GameMap current, GameMap[] around)
 	{
-		
+		currentMap = current;
+		aroundMaps = around;
+	}
+	
+	public GameMap currentMap()
+	{
+		return currentMap;
 	}
 }

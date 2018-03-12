@@ -122,8 +122,11 @@ public class Program
 		{
 			System.out.println("Which game would you (kindly) want to delete?");
 			System.out.println(Functions.listToString(GameManager.instance().players()));
+			System.out.println("or type \"none\" to exit");
 			
 			option = input.nextLine();
+			
+			if(option.equals("none")) break;
 			
 			if(GameManager.instance().players().contains(option))
 			{
