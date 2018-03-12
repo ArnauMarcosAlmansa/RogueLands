@@ -1,0 +1,3 @@
+tileType: default
+sprite: resources/imgages/wall.png
+collider: true

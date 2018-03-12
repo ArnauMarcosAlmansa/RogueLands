@@ -2,9 +2,13 @@ package GameEngine;
 
 import MapStuff.*;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import CharacterStuff.*;
+import General.DataParser;
+import General.FileManager;
+import General.FileType;
 
 public class GameScene
 {
@@ -19,6 +23,55 @@ public class GameScene
 		
 	}
 	
+	public void changeMap(GameMap newMap)
+	{
+		currentMap = newMap;
+		
+		int row = currentMap.pos().row();
+		int col = currentMap.pos().col();
+		
+		try
+		{
+			aroundMaps[0] = DataParser.parseGameMap(FileManager.instance().readFile(FileType.GAME_MAP, (row - 1) + "-" + col + ".map"));
+		}
+		catch (FileNotFoundException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try
+		{
+			aroundMaps[1] = DataParser.parseGameMap(FileManager.instance().readFile(FileType.GAME_MAP, row + "-" + (col + 1) + ".map"));
+		}
+		catch (FileNotFoundException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try
+		{
+			aroundMaps[2] = DataParser.parseGameMap(FileManager.instance().readFile(FileType.GAME_MAP, (row + 1) + "-" + col + ".map"));
+		}
+		catch (FileNotFoundException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try
+		{
+			aroundMaps[3] = DataParser.parseGameMap(FileManager.instance().readFile(FileType.GAME_MAP, row + "-" + (col - 1) + ".map"));
+		}
+		catch (FileNotFoundException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public void setMaps(GameMap current, GameMap[] around)
 	{
 		currentMap = current;
@@ -28,5 +81,10 @@ public class GameScene
 	public GameMap currentMap()
 	{
 		return currentMap;
+	}
+	
+	public GameMap[] aroundMaps()
+	{
+		return aroundMaps;
 	}
 }

@@ -3,30 +3,36 @@ import General.Vector2;
 
 public class GameCharacter 
 {
-	private String name;
+	protected String name;
 	
-	private int[] idRange;
-	private String[] spriteRange;
+	protected int[] idRange;
+	protected int currentId;
+	protected String[] spriteRange;
 	
-	private Vector2 pos;
-	private Vector2 movement;
+	protected Vector2 pos;
+	protected Vector2 movement;
 	
-	private float maxHealth;
-	private float currentHealth;
+	protected float maxHealth;
+	protected float currentHealth;
 	
-	private int[] status = new int[4];
+	protected int[] status = new int[4];
 	
-	private float attack;
+	protected float attack;
 	
-	private int effect;
-	private int effectAmount;
+	protected int effect;
+	protected int effectAmount;
 	
-	private float damageReflection;
+	protected float damageReflection;
 	
-	private float damageAbsortion;
+	protected float damageAbsortion;
 	
-	private float damageOnTouch;
+	protected float damageOnTouch;
 	
+	
+	public void Update()
+	{
+		
+	}
 	
 	public float damage(float amount)
 	{
@@ -91,9 +97,23 @@ public class GameCharacter
 		return currentHealth / maxHealth;
 	}
 	
+	public Vector2 pos()
+	{
+		return pos;
+	}
+	
+	public void setPos(Vector2 newPos)
+	{
+		pos = newPos;
+	}
+	
 	public Vector2 Movement()
 	{
 		return movement;
 	};
 	
+	public int currentId()
+	{
+		return currentId;
+	}
 }

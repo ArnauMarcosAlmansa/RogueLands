@@ -192,6 +192,31 @@ public class Vector2
 		return ret;
 	}
 	
+	public int toDirection()
+	{
+		int ret = -1;
+		
+		if(row == 1)
+		{
+			ret = 2;
+		}
+		else if(row == -1)
+		{
+			ret = 0;
+		}
+		
+		if(col == 1)
+		{
+			ret = 1;
+		}
+		else if(col == -1)
+		{
+			ret = 3;
+		}
+		
+		return ret;
+	}
+	
 	public boolean isInsideGrid(int rows, int columns)
 	{
 		boolean ret = true;

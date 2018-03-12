@@ -2,6 +2,7 @@ package MapStuff;
 
 import java.util.Random;
 
+import CharacterStuff.GameCharacter;
 import General.FileManager;
 import General.FileType;
 import General.Vector2;
@@ -14,6 +15,8 @@ public class GameMap
 	
 	private MapTile[][] tiles;
 	
+	private GameCharacter[][] characters;
+	
 	private String biome;
 	
 	private Vector2 pos;
@@ -21,6 +24,8 @@ public class GameMap
 	public GameMap()
 	{
 		tiles = new MapTile[MAP_HEIGHT][MAP_WIDTH];
+		
+		characters = new GameCharacter[MAP_HEIGHT][MAP_WIDTH];
 		
 		biome = "default biome";
 		
@@ -53,6 +58,8 @@ public class GameMap
 			for(int j = 0; j < tiles[i].length; j++)
 			{
 				tiles[i][j] = null;
+				
+				characters[i][j] = null;
 			}
 		}
 	}
@@ -127,9 +134,46 @@ public class GameMap
 		biome = newBiome;
 	}
 	
+	public void setPos(Vector2 newPos)
+	{
+		pos = newPos;
+	}
+	
+	public Vector2 pos()
+	{
+		return pos;
+	}
+	
 	public MapTile[][] tiles()
 	{
 		return tiles;
+	}
+	
+	public GameCharacter[][] charactersGrid()
+	{
+		return characters;
+	}
+	
+	public int[][] characterLayout()
+	{
+		int[][] ret = new int[characters.length][characters[0].length];
+		
+		for(int i = 0; i < characters.length; i++)
+		{
+			for(int j = 0; j < characters[i].length; j++)
+			{
+				if(characters[i][j] != null)
+				{
+					ret[i][j] = characters[i][j].currentId();
+				}
+				else
+				{
+					ret[i][j] = 3;
+				}
+			}
+		}
+		
+		return ret;
 	}
 	
 	public String toString()
@@ -137,6 +181,8 @@ public class GameMap
 		String data = new String();
 		
 		data = data + biome + '\n';
+		
+		data = data + pos.row() + ' ' + pos.col() + '\n';
 		
 		for(int i = 0; i < GameMap.MAP_HEIGHT; i++)
 		{

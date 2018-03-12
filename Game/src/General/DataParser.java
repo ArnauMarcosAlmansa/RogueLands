@@ -27,6 +27,8 @@ public class DataParser
 				int id = reader.nextInt();
 				
 				ret[i][j] = parseMapTile(FileManager.instance().readFile(FileType.MAP_TILE, String.valueOf(id)));
+				
+				ret[i][j].setId(id);
 			}
 		}
 		
@@ -49,9 +51,11 @@ public class DataParser
 		{
 			ret = new MapTile();
 			
-			while(reader.hasNextLine())
+			while(reader.hasNext())
 			{
 				String label = reader.next();
+				
+				if(label.equals("END")) break;
 				
 				if(label.toLowerCase().equals("sprite:"))
 				{
@@ -274,11 +278,17 @@ public class DataParser
 		
 		map.setBiome(reader.nextLine());
 		
+		map.setPos(new Vector2(reader.nextInt(), reader.nextInt()));
+		
 		for(int i = 0; i < GameMap.MAP_HEIGHT; i++)
 		{
 			for(int j = 0; j < GameMap.MAP_WIDTH; j++)
 			{
-				map.tiles()[i][j] = parseMapTile(FileManager.instance().readFile(FileType.MAP_TILE, reader.nextInt() + ".tile"));
+				int id = reader.nextInt();
+				
+				map.tiles()[i][j] = parseMapTile(FileManager.instance().readFile(FileType.MAP_TILE, id + ".tile"));
+				
+				map.tiles()[i][j].setId(id);
 			}
 		}
 		

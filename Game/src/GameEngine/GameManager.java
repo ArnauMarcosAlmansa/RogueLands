@@ -31,7 +31,7 @@ public class GameManager
 		}catch (FileNotFoundException e)
 		{
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	
@@ -44,7 +44,7 @@ public class GameManager
 		catch (FileNotFoundException e)
 		{
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 				
 		if(players.contains(name))
@@ -77,11 +77,12 @@ public class GameManager
 					continue;
 				}
 				
-				try {
+				try
+				{
 					selected = DataParser.parseWorldCfg(FileManager.instance().readFile(FileType.WORLD_PRESET, "presets.cfg"))[difficulty];
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 				catch (ArrayIndexOutOfBoundsException e)
 				{

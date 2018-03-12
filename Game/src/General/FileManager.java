@@ -45,7 +45,7 @@ public class FileManager
 		catch(FileNotFoundException e) 
 		{
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("paths.cfg file not found");
 			return;
 		}
@@ -75,6 +75,10 @@ public class FileManager
 			else if(label.equals("gameMaps:"))
 			{
 				gameMapPath = fileReader.next();
+			}
+			else if(label.equals("mapTiles:"))
+			{
+				mapTilePresetsPath = fileReader.next();
 			}
 		}
 		
@@ -116,13 +120,13 @@ public class FileManager
 		catch (FileNotFoundException e) 
 		{
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 		catch (UnsupportedEncodingException e)
 		{
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 			return false;
 		}
 		
@@ -139,7 +143,7 @@ public class FileManager
 		
 		path = getPathFromType(type) + name;
 		
-		System.out.println(path);
+		//System.out.println(path);
 		
 		File fileToRead = new File(path);
 		
@@ -211,7 +215,7 @@ public class FileManager
 		}catch (IOException e1)
 		{
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			//e1.printStackTrace();
 		}
 		
 		
@@ -226,7 +230,7 @@ public class FileManager
 				catch (IOException e)
 				{
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					//e.printStackTrace();
 				}
 			}
 		}
@@ -235,14 +239,14 @@ public class FileManager
 			Files.delete(Paths.get(name + "/maps"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		try {
 			Files.delete(Paths.get(name));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		GameManager.instance().players().remove(name);

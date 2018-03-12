@@ -86,4 +86,21 @@ public class Functions
 		
 		return ret;
 	}
+	
+	public static String intMatrixToString(int[][] matrix)
+	{
+		String ret = new String();
+		
+		for(int i = 0; i < matrix.length; i++)
+		{
+			for(int j = 0; j < matrix[i].length; j++)
+			{
+				ret = ret + matrix[i][j] + ' ';
+			}
+			
+			ret = ret + '\n';
+		}
+		
+		return ret;
+	}
 }

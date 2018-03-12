@@ -38,4 +38,9 @@ public class MapTile
 	{
 		isCollider = isColl;
 	}
+	
+	public boolean isCollider()
+	{
+		return isCollider;
+	}
 }

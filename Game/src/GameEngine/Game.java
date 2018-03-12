@@ -3,6 +3,7 @@ package GameEngine;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import CharacterStuff.PlayableCharacter;
 import General.*;
 import General.DataParser;
 import Graphics.*;
@@ -13,6 +14,8 @@ public class Game
 	private static Game instance;
 	
 	private GameScene currentScene;
+	
+	private PlayableCharacter player;
 	
 	private Taulell canvas;
 	
@@ -90,6 +93,10 @@ public class Game
 		auxiliarinput.close();
 		
 		currentScene.setMaps(current, around);
+		
+		player = new PlayableCharacter();
+		
+		player.pos().set(save.playerPos);
 	}
 	
 	public void Setup()
@@ -100,6 +107,14 @@ public class Game
 		window.setName("Rogue Lands");
 		
 		canvas.setActcolors(false);
+		
+		canvas.setActimatges(true);
+		
+		String[] imgs = {"resources/images/ground.png", "resources/images/wall.png", "resources/images/personaje.png","resources/images/transparent.png"};
+		
+		canvas.setImatges(imgs);
+		
+		currentScene.currentMap().charactersGrid()[player.pos().row()][player.pos().col()] = player;
 	}
 	
 	public void Play()
@@ -107,7 +122,19 @@ public class Game
 		while(true)
 		{
 			currentScene.Update();
+			
 			canvas.dibuixa(currentScene.currentMap().layout());
+			
+			canvas.overdibuixa(currentScene.currentMap().characterLayout());
+			
+			System.out.println(Functions.intMatrixToString(currentScene.currentMap().characterLayout()));
+			
+			System.out.println("Playing...");
+			
+			//System.out.println(currentScene.currentMap().toString());
+			
+			
+			player.Update();
 		}
 	}
 	
@@ -119,5 +146,20 @@ public class Game
 		}
 		
 		return instance;
+	}
+	
+	public Taulell canvas()
+	{
+		return canvas;
+	}
+	
+	public Finestra window()
+	{
+		return window;
+	}
+	
+	public GameScene currentScene()
+	{
+		return currentScene;
 	}
 }

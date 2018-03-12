@@ -382,7 +382,7 @@ public class World
 							}
 							catch(Exception e)
 							{
-								e.printStackTrace();
+								//e.printStackTrace();
 							}
 						}
 					}
@@ -471,7 +471,7 @@ public class World
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		try {
@@ -481,7 +481,7 @@ public class World
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		try {
@@ -491,7 +491,7 @@ public class World
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		try {
@@ -501,7 +501,7 @@ public class World
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 	
@@ -674,7 +674,7 @@ public class World
 					}
 					catch(Exception e)
 					{
-						e.printStackTrace();
+						//e.printStackTrace();
 					}
 				}
 			}

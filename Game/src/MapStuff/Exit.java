@@ -1,5 +1,6 @@
 package MapStuff;
 import CharacterStuff.GameCharacter;
+import GameEngine.Game;
 import General.Vector2;
 
 public class Exit extends MapTile
@@ -33,7 +34,30 @@ public class Exit extends MapTile
 	{
 		if(character.Movement().equals(exitCondition))
 		{
-			//change map
+			int direction = exitCondition.toDirection();
+			
+			Game.instance().currentScene().changeMap(Game.instance().currentScene().aroundMaps()[direction]);
+		
+			if(direction == 0)
+			{
+				character.setPos(new Vector2(GameMap.MAP_HEIGHT - 1, character.pos().col()));
+			}
+			else if(direction == 2)
+			{
+				character.setPos(new Vector2(0, character.pos().col()));
+			}
+			else if(direction == 1)
+			{
+				character.setPos(new Vector2(character.pos().row(), 0));
+			}
+			else if(direction == 3)
+			{
+				character.setPos(new Vector2(character.pos().row(), GameMap.MAP_WIDTH - 1));
+			}
+						
+			Game.instance().currentScene().currentMap().charactersGrid()[character.pos().row()][character.pos().col()] = character;
+		
+			
 		}
 	}
 	
