@@ -1,10 +1,12 @@
 package Main;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+import GameEngine.Game;
 import GameEngine.GameManager;
 import General.DataParser;
 import General.FileManager;
@@ -23,6 +25,8 @@ public class Program
 	{
 		// TODO Auto-generated method stub
 		
+		boolean playing = false;
+		
 		while(true)
 		{
 			String option = menu();
@@ -30,10 +34,12 @@ public class Program
 			if(option.equals("1"))
 			{
 				createGame();
+				playing = true;
 			}
 			else if(option.equals("2"))
 			{
 				GameManager.instance().loadGame(scan("Write the name of your game: "));
+				playing = true;
 			}
 			else if(option.equals("3"))
 			{
@@ -47,6 +53,25 @@ public class Program
 			else
 			{
 				System.out.println("Invalid option");
+			}
+			
+			if(playing)
+			{
+				try
+				{
+					Game.instance().Load(DataParser.parseSave(FileManager.instance().readFile(FileType.SAVE, "save.sav")));
+				}
+				catch (FileNotFoundException e)
+				{
+					// TODO Auto-generated catch block
+					System.out.println("A severe error ocurred");
+					playing = false;
+					continue;
+				}
+				
+				Game.instance().Setup();
+				
+				Game.instance().Play();
 			}
 		}
 	

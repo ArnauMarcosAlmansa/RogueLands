@@ -40,7 +40,8 @@ public class GameManager
 		try
 		{
 			players = DataParser.parseList(FileManager.instance().readFile(FileType.USERS, "users.cfg"));
-		} catch (FileNotFoundException e)
+		} 
+		catch (FileNotFoundException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,6 +56,8 @@ public class GameManager
 			players.add(name);
 			
 			currentPlayer = name;
+			
+			FileManager.instance().createUserFolders();
 			
 			FileManager.instance().saveFile(Functions.listToString(players), "users.cfg", FileType.USERS);
 			
@@ -89,6 +92,10 @@ public class GameManager
 			}
 			
 			World temp = new World(selected);
+			
+			String save = temp.startingMapName() + "\n8 8";
+			
+			FileManager.instance().saveFile(save, "save.sav", FileType.SAVE);
 			
 			return true;
 		}

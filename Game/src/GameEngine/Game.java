@@ -13,6 +13,7 @@ public class Game
 	
 	private GameScene currentScene;
 	
+	
 	private Game()
 	{
 		currentScene = new GameScene();

@@ -87,6 +87,12 @@ public class FileManager
 		temp.mkdirs();
 	}
 	
+	public void createUserFolders()
+	{
+		createFolders();
+		saveFile("", "save.sav", FileType.SAVE);
+	}
+	
 	public WorldCfg loadWorldPreset(int preset)
 	{
 		WorldCfg cfg = new WorldCfg();

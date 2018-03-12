@@ -20,6 +20,8 @@ public class World
 	
 	String name;
 	
+	Vector2 startingTilePos;
+	
 	long recursionDepth = 0;
 		
 	public World(WorldCfg cfg)
@@ -63,7 +65,7 @@ public class World
 	
 	private void generate()
 	{
-		Vector2 startingTilePos = new Vector2();
+		startingTilePos = new Vector2();
 		
 		startingTilePos.randomize(
 				WORLD_HEIGHT / 4, 
@@ -748,5 +750,10 @@ public class World
 				}
 			}
 		}
+	}
+	
+	public String startingMapName()
+	{
+		return startingTilePos.row() + "-" + startingTilePos.col() + ".map";
 	}
 }
