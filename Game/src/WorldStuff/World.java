@@ -58,6 +58,8 @@ public class World
 		
 		setBiomes();
 		
+		System.out.println(this);
+		
 		fill();
 		
 		System.out.println("Termina");

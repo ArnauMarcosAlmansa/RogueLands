@@ -36,10 +36,12 @@ public class PlayableCharacter extends GameCharacter
 				e.printStackTrace();
 			}
 		}
+		
 		if(attacking)
 		{
 			attack();
 		}
+		
 		move();
 	}
 	
@@ -75,6 +77,10 @@ public class PlayableCharacter extends GameCharacter
 		{
 			Game.instance().Save();
 			System.exit(0);
+		}
+		else if(input == 'u')
+		{
+			this.damage(10);
 		}
 		else
 		{

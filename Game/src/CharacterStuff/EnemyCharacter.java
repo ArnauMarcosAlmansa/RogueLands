@@ -65,21 +65,45 @@ public class EnemyCharacter extends GameCharacter
 	{
 		int ret = -1;
 		
-		if(Game.instance().currentScene().currentMap().charactersGrid()[pos.row() + 1][pos.col()] instanceof PlayableCharacter)
-		{
-			ret = 2;
+		try {
+			if(Game.instance().currentScene().currentMap().charactersGrid()[pos.row() + 1][pos.col()] instanceof PlayableCharacter)
+			{
+				ret = 2;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		else if(Game.instance().currentScene().currentMap().charactersGrid()[pos.row() - 1][pos.col()] instanceof PlayableCharacter)
-		{
-			ret = 0;
+		
+		try {
+			if(Game.instance().currentScene().currentMap().charactersGrid()[pos.row() - 1][pos.col()] instanceof PlayableCharacter)
+			{
+				ret = 0;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		else if(Game.instance().currentScene().currentMap().charactersGrid()[pos.row()][pos.col() + 1] instanceof PlayableCharacter)
-		{
-			ret = 1;
+		
+		try {
+			if(Game.instance().currentScene().currentMap().charactersGrid()[pos.row()][pos.col() + 1] instanceof PlayableCharacter)
+			{
+				ret = 1;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		else if(Game.instance().currentScene().currentMap().charactersGrid()[pos.row()][pos.col() - 1] instanceof PlayableCharacter)
-		{
-			ret = 3;
+		
+		
+		try {
+			if(Game.instance().currentScene().currentMap().charactersGrid()[pos.row()][pos.col() - 1] instanceof PlayableCharacter)
+			{
+				ret = 3;
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return ret;

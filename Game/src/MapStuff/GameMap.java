@@ -1,6 +1,8 @@
 package MapStuff;
 
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.TreeSet;
 
 import CharacterStuff.GameCharacter;
 import General.FileManager;
@@ -100,6 +102,26 @@ public class GameMap
 					tiles[i][j] = new Trap();
 				}
 			}
+		}
+		
+		ArrayList<Vector2> decoration = new ArrayList<Vector2>();
+		
+		while(decoration.size() < 6)
+		{
+			Vector2 temp = new Vector2();
+			
+			temp.randomize(2, GameMap.MAP_HEIGHT - 1, 2, GameMap.MAP_WIDTH - 1);
+			
+			decoration.add(temp);
+		}
+		
+		
+		for(int i = 0; i < decoration.size(); i++)
+		{
+			Vector2 temp = decoration.get(i);
+			
+			tiles[temp.row()][temp.col()].setId(1);
+			tiles[temp.row()][temp.col()].setCollider(true);
 		}
 		
 		if(exits[0] > 0)
