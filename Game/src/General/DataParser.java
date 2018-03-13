@@ -2,7 +2,9 @@ package General;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 import MapStuff.Exit;
 import MapStuff.GameMap;
@@ -299,5 +301,26 @@ public class DataParser
 		reader.close();
 		
 		return map;
+	}
+	
+	public static ArrayList<String> parseSpritesId(TreeMap<Integer, String> idSprite)
+	{
+		ArrayList<String> ret = new ArrayList<String>();
+		
+		int last = idSprite.lastKey();
+		
+		for(int i = 0; i < last; i++)
+		{
+			if(idSprite.get(i) != null)
+			{
+				ret.add("");
+			}
+			else
+			{
+				ret.add(idSprite.get(i));
+			}
+		}
+		
+		return ret;
 	}
 }

@@ -182,4 +182,9 @@ public class Game
 	{
 		return player;
 	}
+	
+	public void setSprites(String[] paths)
+	{
+		canvas.setImatges(paths);
+	}
 }

@@ -2,11 +2,13 @@ package GameEngine;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 import General.DataParser;
 import General.FileManager;
 import General.FileType;
 import General.Functions;
+import General.PresetType;
 import Main.Program;
 import WorldStuff.World;
 import WorldStuff.WorldCfg;
@@ -23,16 +25,34 @@ public class GameManager
 	
 	private static GameManager instance;
 	
+	private TreeMap<PresetType, Integer[]> presetRanges = new TreeMap<PresetType, Integer[]>();
+	
 	private GameManager()
 	{
 		try
 		{
 			players = DataParser.parseList(FileManager.instance().readFile(FileType.USERS, "users.cfg"));
-		}catch (FileNotFoundException e)
+		}
+		catch (FileNotFoundException e)
 		{
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
 		}
+		
+		presetRanges.put(PresetType.MAP_TILE, new Integer[] {0, 100});
+		
+		setupSprites();
+	}
+	
+	private void setupSprites()
+	{
+		//TODO hacer esto
+		
+		TreeMap<Integer, String> spritesMap =  ;
+		
+		ArrayList<String> paths = DataParser.parseSpritesId(spritesMap);
+		
+		Game.instance().setSprites((String[]) paths.toArray());
 	}
 	
 	public boolean createGame(String name)
