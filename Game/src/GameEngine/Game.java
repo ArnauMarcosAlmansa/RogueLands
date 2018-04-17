@@ -112,7 +112,7 @@ public class Game
 		
 		canvas.setActimatges(true);
 		
-		String[] imgs = {"resources/images/ground.png", "resources/images/wall.png", "resources/images/ground.png", "resources/images/personaje.png","resources/images/transparent.png", "resources/images/enemy.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png"};
+		String[] imgs = {"resources/images/ground.png", "resources/images/wall.png", "resources/images/ground.png", "resources/images/personaje.png","resources/images/transparent.png", "resources/images/índice.jpg", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png", "resources/images/ground.png"};
 		
 		canvas.setImatges(imgs);
 		

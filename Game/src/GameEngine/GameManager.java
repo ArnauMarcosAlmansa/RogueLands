@@ -48,11 +48,11 @@ public class GameManager
 	{
 		//TODO hacer esto
 		
-		TreeMap<Integer, String> spritesMap =  ;
+		//TreeMap<Integer, String> spritesMap =  ;
 		
-		ArrayList<String> paths = DataParser.parseSpritesId(spritesMap);
+		//ArrayList<String> paths = DataParser.parseSpritesId(spritesMap);
 		
-		Game.instance().setSprites((String[]) paths.toArray());
+		//Game.instance().setSprites((String[]) paths.toArray());
 	}
 	
 	public boolean createGame(String name)

@@ -46,9 +46,12 @@ public class EnemyCharacter extends GameCharacter
 			
 			if(!Game.instance().currentScene().currentMap().tiles()[pos.row() + movement.row()][pos.col() + movement.col()].isCollider()
 					&&
-				pos.row() + movement.row() > -1 && pos.row() + movement.row() < GameMap.MAP_HEIGHT
+				pos.row() + movement.row() > 0 && pos.row() + movement.row() < GameMap.MAP_HEIGHT - 1
 					&& 
-				pos.col() + movement.col() > -1 && pos.col() + movement.col() < GameMap.MAP_WIDTH)
+				pos.col() + movement.col() > 0 && pos.col() + movement.col() < GameMap.MAP_WIDTH - 1
+					&&
+				Game.instance().currentScene().currentMap().charactersGrid()[pos.row() + movement.row()][pos.col() + movement.col()] == null
+				)
 			{
 				break;
 			}
