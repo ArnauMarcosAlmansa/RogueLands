@@ -23,6 +23,8 @@ public class FileManager
 		
 	private String gameMapPath;
 	
+	private String spritesPath;
+	
 	private static FileManager instance;
 	
 	/*
@@ -54,7 +56,7 @@ public class FileManager
 		{
 			String label = fileReader.next();
 			
-			if(label.equals("END")) break;
+			if(label.toUpperCase().equals("END")) break;
 			
 			if(label.charAt(0) == '#')
 			{
@@ -66,7 +68,7 @@ public class FileManager
 			if(label.equals("worldPresets:"))
 			{
 				worldPresetsPath = fileReader.next();
-				System.out.println(worldPresetsPath);
+				//System.out.println(worldPresetsPath);
 			}
 			else if(label.equals("saves:"))
 			{
@@ -80,6 +82,11 @@ public class FileManager
 			{
 				mapTilePresetsPath = fileReader.next();
 			}
+			else if(label.equals("sprites:"))
+			{
+				spritesPath = fileReader.next();
+			}
+				
 		}
 		
 		fileReader.close();
@@ -196,6 +203,9 @@ public class FileManager
 			case GAME_MAP:
 				path = gameMapPath;
 				path = GameManager.instance().currentPlayer() + '/' + path;
+				break;
+			case SPRITES:
+				path = spritesPath;
 				break;
 			default:
 				path = "";

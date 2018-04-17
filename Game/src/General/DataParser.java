@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import Graphics.Sprites;
 import MapStuff.Exit;
 import MapStuff.GameMap;
 import MapStuff.MapTile;
@@ -322,5 +323,19 @@ public class DataParser
 		}
 		
 		return ret;
+	}
+	
+	public static String[] parseSprites(String data)
+	{
+		String[] sprites = new String[Sprites.SPRITES_LENGTH];
+		
+		Scanner reader = new Scanner(data);
+		
+		while(reader.hasNextLine())
+		{
+			sprites[reader.nextInt()] = reader.nextLine();
+		}
+		
+		return sprites;
 	}
 }
